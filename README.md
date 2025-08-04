@@ -1,2 +1,4 @@
-# dynamic-youtube-readme
-Um projeto que atualiza meu README com a última música que ouvi no YouTube Music.
+
+🎵 Impossível buscar a música no momento.
+
+🎵 Impossível buscar a música no momento.

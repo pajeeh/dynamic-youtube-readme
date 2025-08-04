@@ -1,0 +1,42 @@
+name: Update YouTube Music Stats
+
+on:
+  schedule:
+    # Roda a cada 15 minutos
+    - cron: '*/15 * * * *'
+  # Permite rodar manualmente pela aba "Actions" do GitHub
+  workflow_dispatch:
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalar dependências
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Criar arquivo de autenticação a partir do Secret
+        # Usa o secret do OAuth que você configurou no GitHub
+        run: echo "${{ secrets.YT_MUSIC_OAUTH_JSON }}" > oauth.json
+
+      - name: Rodar script para atualizar o README
+        # Executa o script que agora usa o oauth.json
+        run: python update_readme.py
+
+      - name: Fazer commit das mudanças
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          # Faz o commit apenas se houver alguma mudança
+          git diff --quiet && git diff --staged --quiet || git commit -m "🎵 Update YouTube Music stats"
+          git push
