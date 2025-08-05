@@ -208,3 +208,4 @@ __marimo__/
 # Arquivo de autenticação do YouTube Music
 oauth.json
 credentials.json
+.venv
