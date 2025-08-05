@@ -41,7 +41,7 @@ jobs:
         env:
           YT_CLIENT_ID: ${{ secrets.YT_CLIENT_ID }}
           YT_CLIENT_SECRET: ${{ secrets.YT_CLIENT_SECRET }}
-        run: python update_readme.py ./profile/README.md
+        run: python update_readme.py ./pajeeh/README.md
 
       # Passo 7: Faz o commit e push DAS MUDANÇAS NO REPOSITÓRIO DO PERFIL
       - name: Commit and push changes
